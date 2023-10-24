@@ -6,7 +6,6 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -22,6 +21,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -64,17 +65,21 @@ fun BusinessCardApp() {
 fun UserInfo() {
     Image(
         painter = painterResource(id = R.drawable.android_logo),
-        contentDescription = "user image",
+        contentDescription = stringResource(R.string.user_image_description),
         modifier = Modifier
-            .background(color = Color.Blue)
             .size(100.dp)
+            .background(Color(0xFF073042))
     )
     Text(
-        text = "Jennifer Doe",
-        fontSize = 54.sp,
-        modifier = Modifier.padding(top = 10.dp)
+        text = stringResource(R.string.full_name),
+        fontWeight = FontWeight.Bold,
+        fontSize = 40.sp,
+        color = Color.Black
     )
-    Text(text = "Android Developer Extraordinaire")
+    Text(
+        text = stringResource(R.string.designation),
+        color = Color(0xFF3DDC84)
+    )
 }
 
 @Composable
@@ -83,39 +88,58 @@ fun ContactInfo() {
         Row() {
             Icon(
                 painter = painterResource(R.drawable.baseline_local_phone_24),
-                contentDescription = "phone icon"
+                contentDescription = stringResource(R.string.phone_icon_description),
+                tint = Color(0xFF3DDC84)
             )
             Spacer(modifier = Modifier.size(16.dp))
-            Text(text = "+11 (123) 444 555 666")
+            Text(
+                text = stringResource(R.string.phone_number),
+                color = Color.Black
+            )
         }
+        Spacer(modifier = Modifier.size(10.dp))
         Row() {
             Icon(
                 painter = painterResource(R.drawable.baseline_share_24),
-                contentDescription = "share icon"
+                contentDescription = stringResource(R.string.link_icon_description),
+                tint = Color(0xFF3DDC84)
             )
             Spacer(modifier = Modifier.size(16.dp))
-            Text(text = "@AndroidDev")
+            Text(
+                text = stringResource(R.string.username),
+                color = Color.Black
+            )
         }
+        Spacer(modifier = Modifier.size(10.dp))
         Row() {
             Icon(
-                painter = painterResource(
-                    R.drawable.baseline_email_24
-                ),
-                contentDescription = "email icon"
+                painter = painterResource(R.drawable.baseline_mail_24),
+                contentDescription = stringResource(R.string.email_icon_description),
+                tint = Color(0xFF3DDC84)
             )
             Spacer(modifier = Modifier.size(16.dp))
-            Text(text = "jen.doe@android.com")
+            Text(
+                text = stringResource(R.string.email),
+                color = Color.Black
+            )
         }
     }
 }
 
+
 @Preview(
-    showBackground = true,
+    showBackground = false,
     showSystemUi = true
 )
 @Composable
-fun GreetingPreview() {
+fun  BusinessCardAppPreview() {
     BusinessCardTheme {
-        BusinessCardApp()
+        Surface(
+            modifier = Modifier
+                .fillMaxSize(),
+            color = Color(0xFFD2E8D4)
+        ) {
+            BusinessCardApp()
+        }
     }
 }
