@@ -55,29 +55,39 @@ fun BusinessCardApp() {
         verticalArrangement = Arrangement.Bottom,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        UserInfo()
+        UserInfo(
+            image = R.drawable.android_logo,
+            imageDescription = R.string.user_image_description,
+            fullName = R.string.full_name,
+            designation = R.string.designation
+        )
         Spacer(modifier = Modifier.size(240.dp))
         ContactInfo()
     }
 }
 
 @Composable
-fun UserInfo() {
+fun UserInfo(
+    image: Int,
+    imageDescription: Int,
+    fullName: Int,
+    designation: Int
+) {
     Image(
-        painter = painterResource(id = R.drawable.android_logo),
-        contentDescription = stringResource(R.string.user_image_description),
+        painter = painterResource(image),
+        contentDescription = stringResource(imageDescription),
         modifier = Modifier
             .size(100.dp)
             .background(Color(0xFF073042))
     )
     Text(
-        text = stringResource(R.string.full_name),
+        text = stringResource(fullName),
         fontWeight = FontWeight.Bold,
         fontSize = 40.sp,
         color = Color.Black
     )
     Text(
-        text = stringResource(R.string.designation),
+        text = stringResource(designation),
         color = Color(0xFF3DDC84)
     )
 }
@@ -85,44 +95,38 @@ fun UserInfo() {
 @Composable
 fun ContactInfo() {
     Column {
-        Row() {
-            Icon(
-                painter = painterResource(R.drawable.baseline_local_phone_24),
-                contentDescription = stringResource(R.string.phone_icon_description),
-                tint = Color(0xFF3DDC84)
-            )
-            Spacer(modifier = Modifier.size(16.dp))
-            Text(
-                text = stringResource(R.string.phone_number),
-                color = Color.Black
-            )
-        }
+        ContactRow(
+            icon = R.drawable.baseline_local_phone_24,
+            iconDescription = R.string.phone_number
+        )
         Spacer(modifier = Modifier.size(10.dp))
-        Row() {
-            Icon(
-                painter = painterResource(R.drawable.baseline_share_24),
-                contentDescription = stringResource(R.string.link_icon_description),
-                tint = Color(0xFF3DDC84)
-            )
-            Spacer(modifier = Modifier.size(16.dp))
-            Text(
-                text = stringResource(R.string.username),
-                color = Color.Black
-            )
-        }
+        ContactRow(
+            icon = R.drawable.baseline_share_24,
+            iconDescription = R.string.username
+        )
         Spacer(modifier = Modifier.size(10.dp))
-        Row() {
-            Icon(
-                painter = painterResource(R.drawable.baseline_mail_24),
-                contentDescription = stringResource(R.string.email_icon_description),
-                tint = Color(0xFF3DDC84)
-            )
-            Spacer(modifier = Modifier.size(16.dp))
-            Text(
-                text = stringResource(R.string.email),
-                color = Color.Black
-            )
-        }
+        ContactRow(
+            icon = R.drawable.baseline_mail_24,
+            iconDescription = R.string.email
+        )
+    }
+}
+
+@Composable
+fun ContactRow(icon: Int, iconDescription: Int) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Icon(
+            painter = painterResource(icon),
+            contentDescription = stringResource(iconDescription),
+            tint = Color(0xFF3DDC84)
+        )
+        Spacer(modifier = Modifier.size(16.dp))
+        Text(
+            text = stringResource(iconDescription),
+            color = Color.Black
+        )
     }
 }
 
